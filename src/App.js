@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Navbar from "./Components/Navbar";
 
 function App() {
-  const [currentTime, setCurrentTimeo] = useState(0);
+
+  const [currentTime, setCurrentTime] = useState(0);
 
   // setCurrentTime is a 'dispatchSetState' function
-  console.log('Hello?', currentTime, setCurrentTimeo);
+  console.log('Hello?', currentTime, setCurrentTime);
 
   // What is useEffect?
   /* If you’re familiar with React class lifecycle methods, you can
@@ -24,14 +26,20 @@ function App() {
     go to http://localhost:3000/time */
     fetch('/api/time').then(res => res.json()).then(data => {
       document.title = 'It is currently ' + data.time;
-      setCurrentTimeo(data.time);
+      setCurrentTime(data.time);
     });
   }, []);
 
   return (
+  <div classname= "ParentDiv">
+    <div className="Navbar">
+        <React.Fragment>
+            <Navbar/>
+        </React.Fragment>
+    </div>
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/*<img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -42,11 +50,18 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a> */}
         <p>The current time is {currentTime}.</p>
       </header>
+    </div>
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
